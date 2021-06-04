@@ -15,26 +15,28 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     g++             \
     make            \
     python3         \
-    python3-pip3    \
+    python3-pip     \
     git             \
-    unzip
+    unzip           \
+    bison           \
+    flex            
     
 RUN pip3 install lab
 
-WORKDIR /workspace/cerberus/
+WORKDIR /home/dmdoebber/
 
 # Set up some environment variables.
 ENV CXX g++
-ENV BUILD_COMMIT_ID 821fad1
 
-# Fetch the code at the right commit ID from the Github repo
-#RUN curl -L https://github.com/ctpelok77/fd-red-black-postipc2018/archive/${BUILD_COMMIT_ID}.tar.gz | tar xz --strip=1
+ENV DOWNWARD_REPO /home/dmdoebber/red-black
+ENV DOWNWARD_BENCHMARKS /home/dmdoebber/benchmarks
 
+COPY bin/ /home/dmdoebber/bin/
 
+RUN git clone https://github.com/aibasel/downward-benchmarks.git benchmarks
+RUN git clone https://github.com/dmdoebber/red-black.git
 
-COPY file.zip /workspace/cerberus/
-
-RUN unzip file.zip
+WORKDIR /home/dmdoebber/red-black
 
 # Invoke the build script with appropriate options
 RUN python3 ./build.py -j4 release
