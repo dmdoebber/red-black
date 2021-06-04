@@ -22,8 +22,8 @@ CONFIGS = [
     )
 ]
 
-BUILD_OPTIONS = ["release64"]
-DRIVER_OPTIONS = ["--build", "release64", "--overall-time-limit", "30m", "--overall-memory-limit", "4096M"]
+BUILD_OPTIONS = []
+DRIVER_OPTIONS = ["--overall-time-limit", "30m", "--overall-memory-limit", "4096M"]
 
 REVS = [
     ("master", "master"),
