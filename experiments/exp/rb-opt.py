@@ -10,6 +10,8 @@ BENCHMARKS_DIR = os.environ["DOWNWARD_BENCHMARKS"]
 
 SUITE = suites.suite_ipc11_opt()
 
+SUITE = ["barman-opt11-strips"]
+
 ENV = project.LocalEnvironment(processes=8)
 
 CONFIGS = [
